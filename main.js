@@ -24,9 +24,15 @@ mb.on('after-create-window', () => {
 })
 
 app.on('ready', () => {
+
+})
+
+const enableScreenshot = () => {
   let temp = Date.now()
   let img = shell.exec(`screencapture -i images/${temp}.png`, { async: true })
-})
+}
+
+exports.enableScreenshot = enableScreenshot;
 
 // app.on('ready', function() {
 //   mainWindow = new BrowserWindow({width: 1360, height: 800});
