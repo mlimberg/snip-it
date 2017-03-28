@@ -1,8 +1,12 @@
 const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
-const menubar = require('menubar');
-const mb = menubar();
+const Menubar = require('menubar');
+const mb = Menubar({
+  width: 400,
+  height: 500,
+  icon: './snip-it-logo.png'
+});
 const screenshot = require('electron-screenshot-service');
 const shell = require('shelljs');
 
