@@ -1,4 +1,5 @@
 const electron = require('electron');
+const fs = require('fs');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 const Menubar = require('menubar');
@@ -23,13 +24,18 @@ mb.on('after-create-window', () => {
   mb.window.loadURL('file://' + __dirname + '/public/index.html');
 })
 
-app.on('ready', () => {
-
-})
+// app.on('ready', (file) => {
+//   let contents = fs.readFileSync(file)
+//   console.log(contents)
+// })
 
 const enableScreenshot = () => {
   let temp = Date.now()
-  let img = shell.exec(`screencapture -i images/${temp}.png`, { async: true })
+  let createFolder = shell.exec('mkdir ~/Desktop/snip-it-images', { async: true })
+  if (createFolder === 0) {
+    shell.exec('mkdir ~/Desktop/snip-it-images', { async: true })
+  }
+  shell.exec(`screencapture -i ~/Desktop/snip-it-images/${temp}.png`, { async: true })
 }
 
 exports.enableScreenshot = enableScreenshot;
