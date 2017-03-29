@@ -13,41 +13,20 @@ const shell = require('shelljs');
 
 let mainWindow = null;
 
-// app.on('window-all-closed', function() {
-//   if (process.platform != 'darwin') {
-//     app.quit();
-//   }
-// });
-
 mb.on('after-create-window', () => {
-
   mb.window.loadURL('file://' + __dirname + '/public/index.html');
 })
 
-// app.on('ready', (file) => {
-//   let contents = fs.readFileSync(file)
-//   console.log(contents)
-// })
+mb.on('show', () => {
+  const content = 'stuff!'
+  mb.window.webContents.send('imageList', content)
+})
 
 const enableScreenshot = () => {
-  let temp = Date.now()
-  let createFolder = shell.exec('mkdir ~/Desktop/snip-it-images', { async: true })
-  if (createFolder === 0) {
-    shell.exec('mkdir ~/Desktop/snip-it-images', { async: true })
-  }
+  mb.window.hide();
+  const temp = Date.now()
+  shell.exec('mkdir ~/Desktop/snip-it-images', { async: true })
   shell.exec(`screencapture -i ~/Desktop/snip-it-images/${temp}.png`, { async: true })
 }
 
 exports.enableScreenshot = enableScreenshot;
-
-// app.on('ready', function() {
-//   mainWindow = new BrowserWindow({width: 1360, height: 800});
-//
-//   mainWindow.loadURL('file://' + __dirname + '/public/index.html');
-//
-//   mainWindow.openDevTools();
-//
-//   mainWindow.on('closed', function() {
-//     mainWindow = null;
-//   });
-// });
