@@ -5,59 +5,52 @@ const BrowserWindow = electron.BrowserWindow;
 const Menubar = require('menubar');
 const webContents = electron.webContents;
 const mb = Menubar({
-  width: 400,
-  height: 500,
-  icon: './snip-it-logo.png'
+  width: -1,
+  height: -1,
+  icon: './snip-it-logo.png',
+  tooltip: 'click to take a screenshot!'
 });
 const screenshot = require('electron-screenshot-service');
 const shell = require('shelljs');
 
-let mainWindow = null;
+let editWindow = null;
 
-mb.on('after-create-window', () => {
-  mb.window.loadURL('file://' + __dirname + '/public/index.html');
-  mb.window.openDevTools();
+mb.on('after-show', () => {
+  enableScreenshot();
+  // mb.window.loadURL('file://' + __dirname + '/public/index.html');
+  // mb.window.openDevTools();
 })
-
-// app.on('ready', () => {
-//   console.log('ready!');
-//   app.send('imageList', 'yo!')
-// })
-
-// mb.on('show', () => {
-//   console.log('show');
-//   const pathToFile = app.getPath('desktop') + '/snip-it-images'
-//   const content = fs.readdir(pathToFile, (err, data) => {
-//     const package = {
-//       path: pathToFile,
-//       data: data
-//     }
-//     mb.window.webContents.send('imageList', package)
-//   })
-// })
-
-mb.on('ready', () => {
-  console.log('ready');
-  let package = 'hey'
-  const pathToFile = app.getPath('desktop') + '/snip-it-images'
-  fs.readdir(pathToFile, (err, data) => {
-    package = {
-      path: pathToFile,
-      data: data
-    }
-  })
-  mb.on('show', () => {
-    mb.window.webContents.send('imageList', package)
-
-  })
-})
-
 
 const enableScreenshot = () => {
-  mb.window.hide();
-  const temp = Date.now()
+  const newImg = Date.now() + '.png'
   shell.exec('mkdir ~/Desktop/snip-it-images', { async: true })
-  shell.exec(`screencapture -i ~/Desktop/snip-it-images/${temp}.png`, { async: true })
+  const sShot = shell.exec(`screencapture -i ~/Desktop/snip-it-images/${newImg}`, () => {
+    openEditWindow(newImg)
+  })
 }
+
+const openEditWindow = (file) => {
+  const filePath = app.getPath('desktop') + `/snip-it-images/${file}`
+  editWindow = new BrowserWindow({
+    show: false,
+    // backgroundColor: '#000',
+    title: 'Edit Screenshot',
+  });
+
+  fs.exists(filePath, (exists) => {
+    if(exists) {
+      editWindow.show()
+      editWindow.openDevTools();
+      editWindow.loadURL('file://' + __dirname + '/public/index.html')
+    }
+  })
+
+  editWindow.on('focus', () => {
+    console.log('show!');
+    editWindow.webContents.send('currentImg', filePath)
+  })
+
+}
+
 
 exports.enableScreenshot = enableScreenshot;
