@@ -4,6 +4,7 @@ const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 const Menubar = require('menubar');
 const webContents = electron.webContents;
+const ipc = electron.ipcMain;
 const mb = Menubar({
   width: -1,
   height: -1,
@@ -46,8 +47,11 @@ const openEditWindow = (file) => {
   })
 
   editWindow.on('focus', () => {
-    console.log('show!');
-    editWindow.webContents.send('currentImg', filePath)
+    ipc.on('mounted', (event, response) => {
+      if(response === 'mounted') {
+        editWindow.webContents.send('currentImg', filePath)
+      }
+    })
   })
 
 }
