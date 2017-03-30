@@ -32,6 +32,8 @@
     "electron-prebuilt": "^0.37.2",
     "electron-screenshot": "^1.0.4",
     "electron-screenshot-service": "^4.0.3",
+    "fs": "0.0.1-security",
+    "image-size": "^0.5.1",
     "img-loader": "^2.0.0",
     "menubar": "^5.2.3",
     "react": "^0.14.8",
