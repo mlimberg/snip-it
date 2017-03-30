@@ -12,6 +12,7 @@ const mb = Menubar({
 });
 const screenshot = require('electron-screenshot-service');
 const shell = require('shelljs');
+const sizeOf = require('image-size');
 
 let editWindow = null;
 
@@ -31,6 +32,12 @@ const enableScreenshot = () => {
 
 const openEditWindow = (file) => {
   const filePath = app.getPath('desktop') + `/snip-it-images/${file}`
+  let d = sizeOf(filePath)
+  const imgData = {
+    filePath,
+    width: d.width,
+    height: d.height
+  }
   editWindow = new BrowserWindow({
     show: false,
     // backgroundColor: '#000',
@@ -47,7 +54,7 @@ const openEditWindow = (file) => {
 
   editWindow.on('focus', () => {
     setTimeout( () => {
-      editWindow.webContents.send('currentImg', filePath)
+      editWindow.webContents.send('currentImg', imgData)
     }, 500)
   })
 
