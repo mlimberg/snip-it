@@ -38,26 +38,38 @@ mb.on('after-create-window', () => {
 
 mb.on('ready', () => {
   console.log('ready');
-  let package = 'hey'
-  const pathToFile = app.getPath('desktop') + '/snip-it-images'
-  fs.readdir(pathToFile, (err, data) => {
-    package = {
-      path: pathToFile,
-      data: data
-    }
-  })
-  mb.on('show', () => {
-    mb.window.webContents.send('imageList', package)
-
-  })
+  // let package = 'hey'
+  // const pathToFile = app.getPath('desktop') + '/snip-it-images'
+  // fs.readdir(pathToFile, (err, data) => {
+  //   package = {
+  //     path: pathToFile,
+  //     data: data
+  //   }
+  // })
+  // mb.on('show', () => {
+  //   mb.window.webContents.send('imageList', package)
+  //
+  // })
 })
 
+const openNewImageFile = (file) => {
+  const filePath = app.getPath('desktop') + `/snip-it-images/${file}`
+  let newWindow = new BrowserWindow({ show: false });
+  fs.exists(filePath, (exists) => {
+    if(exists) {
+      console.log('exists!');
+      newWindow.show()
+    }
+  })
+}
 
 const enableScreenshot = () => {
   mb.window.hide();
-  const temp = Date.now()
+  const newImg = Date.now() + '.png'
   shell.exec('mkdir ~/Desktop/snip-it-images', { async: true })
-  shell.exec(`screencapture -i ~/Desktop/snip-it-images/${temp}.png`, { async: true })
+  const sShot = shell.exec(`screencapture -i ~/Desktop/snip-it-images/${newImg}`, () => {
+    openNewImageFile(newImg)
+  })
 }
 
 exports.enableScreenshot = enableScreenshot;
