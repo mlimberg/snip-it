@@ -46,8 +46,9 @@ const openEditWindow = (file) => {
   })
 
   editWindow.on('focus', () => {
-    console.log('show!');
-    editWindow.webContents.send('currentImg', filePath)
+    setTimeout( () => {
+      editWindow.webContents.send('currentImg', filePath)
+    }, 500)
   })
 
 }
