@@ -11,3 +11,14 @@ h1 {
 canvas {
   background-color: white;
 }
+
+.canvas-container {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: row;
+}
