@@ -33,16 +33,20 @@ const enableScreenshot = () => {
 
 const openEditWindow = (file) => {
   const filePath = app.getPath('desktop') + `/snip-it-images/${file}`
-  let d = sizeOf(filePath)
+  const d = sizeOf(filePath)
+
   const imgData = {
     filePath,
     width: d.width,
     height: d.height
   }
+
   editWindow = new BrowserWindow({
     show: false,
     // backgroundColor: '#000',
     title: 'Edit Screenshot',
+    width: d.width + 50,
+    height: d.height + 100
   });
 
   fs.exists(filePath, (exists) => {
@@ -56,7 +60,7 @@ const openEditWindow = (file) => {
   editWindow.on('focus', () => {
     ipc.on('mounted', (event, response) => {
       if(response === 'mounted') {
-        editWindow.webContents.send('currentImg', filePath)
+        editWindow.webContents.send('currentImg', imgData)
       }
     })
 
@@ -64,5 +68,9 @@ const openEditWindow = (file) => {
 
 }
 
+const saveFile = (input) => {
+  console.log(input);
+}
 
 exports.enableScreenshot = enableScreenshot;
+exports.saveFile = saveFile
