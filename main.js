@@ -25,7 +25,7 @@ mb.on('after-show', () => {
 
 const enableScreenshot = () => {
   const newImg = Date.now() + '.png'
-  shell.exec('mkdir ~/Desktop/snip-it-images', { async: true })
+  shell.mkdir('-p', '~/Desktop/snip-it-images')
   const sShot = shell.exec(`screencapture -i ~/Desktop/snip-it-images/${newImg}`, () => {
     openEditWindow(newImg)
   })
@@ -37,6 +37,7 @@ const openEditWindow = (file) => {
 
   const imgData = {
     filePath,
+    file,
     width: d.width,
     height: d.height
   }
@@ -67,8 +68,27 @@ const openEditWindow = (file) => {
 }
 
 const saveFile = (input) => {
-  console.log(input);
+  const { folder, newName, file } = input;
+  shell.mkdir('-p', `~/Desktop/snip-it-images/${folder}`)
+  shell.cd(`~/Desktop/snip-it-images`)
+  shell.mv('-n' ,`${file}`, `${folder}/${newName}.png`)
+}
+
+const fileCheck = (input) => {
+  const { folder, newName } = input;
+  const filePath = app.getPath('desktop') + `/snip-it-images/${folder}/${newName}`
+  console.log('filepath:', filePath)
+  fs.exists(filePath, (exists) => {
+    console.log('exists', exists)
+    if (exists) {
+      editWindow.webContents.send('duplicate', true)
+    }
+    else {
+      editWindow.webContents.send('duplicate', false)
+      saveFile(input)
+    }
+  })
 }
 
 exports.enableScreenshot = enableScreenshot;
-exports.saveFile = saveFile
+exports.fileCheck = fileCheck
