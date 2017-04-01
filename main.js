@@ -88,6 +88,13 @@ const fileCheck = (input) => {
   })
 }
 
+const viewPhotos = (input) => {
+  const { filePath } = input;
+  console.log(filePath)
+  shell.openFile(filePath)
+}
+
 exports.enableScreenshot = enableScreenshot;
 exports.fileCheck = fileCheck;
 exports.saveFile = saveFile;
+exports.viewPhotos = viewPhotos;
