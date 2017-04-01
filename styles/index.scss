@@ -40,3 +40,19 @@ canvas {
   font-weight: lighter;
   margin: 5px;
 }
+
+.btn {
+  background-color: green;
+  border: none;
+  width: 75px;
+  border-radius: 5px;
+  outline: none;
+  font-size: 14px;
+  &:hover {
+    cursor: pointer
+  }
+  &:disabled, &:disabled:hover {
+    background-color: red;
+    cursor: default;
+  }
+}

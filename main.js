@@ -76,19 +76,18 @@ const saveFile = (input) => {
 
 const fileCheck = (input) => {
   const { folder, newName } = input;
-  const filePath = app.getPath('desktop') + `/snip-it-images/${folder}/${newName}`
-  console.log('filepath:', filePath)
+  const filePath = app.getPath('desktop') + `/snip-it-images/${folder}/${newName}.png`
+
   fs.exists(filePath, (exists) => {
-    console.log('exists', exists)
     if (exists) {
       editWindow.webContents.send('duplicate', true)
     }
     else {
       editWindow.webContents.send('duplicate', false)
-      saveFile(input)
     }
   })
 }
 
 exports.enableScreenshot = enableScreenshot;
-exports.fileCheck = fileCheck
+exports.fileCheck = fileCheck;
+exports.saveFile = saveFile;
