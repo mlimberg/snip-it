@@ -46,7 +46,7 @@ const openEditWindow = (file) => {
     // backgroundColor: '#000',
     title: 'Edit Screenshot',
     width: d.width + 50,
-    height: d.height + 100
+    height: d.height + 150
   });
 
   fs.exists(filePath, (exists) => {
@@ -63,9 +63,7 @@ const openEditWindow = (file) => {
         editWindow.webContents.send('currentImg', imgData)
       }
     })
-
   })
-
 }
 
 const saveFile = (input) => {
