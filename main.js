@@ -1,5 +1,6 @@
 const electron = require('electron');
 const fs = require('fs');
+const path = require('path');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 const Menubar = require('menubar');
@@ -16,6 +17,12 @@ const shell = require('shelljs');
 const sizeOf = require('image-size');
 
 let editWindow = null;
+app.dock.setIcon('./snip-it-logo.png');
+app.dock.setBadge('Snip-It');
+// app.getFileIcon('./snip-it-logo.png', (error, image) => {
+//   icon: './snip-it-logo.png'
+//   console.log(error)
+// })
 
 mb.on('after-show', () => {
   enableScreenshot();
@@ -26,12 +33,17 @@ mb.on('after-show', () => {
 const enableScreenshot = () => {
   const newImg = Date.now() + '.png'
   shell.mkdir('-p', '~/Desktop/snip-it-images')
+  const folder = app.getPath('desktop') + `/snip-it-images`;
+  let directories;
+  fs.readdir(folder, (err, files) => {
+    directories = files.filter(file => fs.statSync(path.join(folder, file)).isDirectory())
+  })
   const sShot = shell.exec(`screencapture -i ~/Desktop/snip-it-images/${newImg}`, () => {
-    openEditWindow(newImg)
+    openEditWindow(newImg, directories)
   })
 }
 
-const openEditWindow = (file) => {
+const openEditWindow = (file, directories) => {
   const filePath = app.getPath('desktop') + `/snip-it-images/${file}`
   const d = sizeOf(filePath)
 
@@ -39,7 +51,8 @@ const openEditWindow = (file) => {
     filePath,
     file,
     width: d.width,
-    height: d.height
+    height: d.height,
+    directories
   }
 
   editWindow = new BrowserWindow({
@@ -55,6 +68,7 @@ const openEditWindow = (file) => {
       editWindow.show()
       editWindow.openDevTools();
       editWindow.loadURL('file://' + __dirname + '/public/index.html')
+      app.dock.show()
     }
   })
 
