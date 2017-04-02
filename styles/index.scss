@@ -5,6 +5,34 @@ body {
   font-family: sans-serif;
 }
 
+.before-dropdown-message {
+  display: inline;
+  font-size: 15px;
+}
+
+.dropdownmenu-input label , .name-input label {
+  font-size: 13px;
+}
+
+.dropdownmenu-input, .name-input {
+  padding-left: 5px;
+}
+
+.btn {
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px;
+  margin-left: 30px;
+}
+
+
+.save-button-container {
+  margin-top: 29px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 200px;
+}
+
+
 .canvas-container {
   padding: 20px;
   display: flex;
@@ -20,7 +48,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  width: 70%;
+  width: 90%;
   margin: auto;
 }
 
@@ -33,23 +61,31 @@ body {
   margin: 5px;
 }
 
-.btn {
-  background-color: green;
-  border: none;
-  width: 75px;
-  border-radius: 5px;
-  outline: none;
-  font-size: 14px;
-  &:hover {
-    cursor: pointer
-  }
-  &:disabled, &:disabled:hover {
-    background-color: red;
-    cursor: default;
-  }
+// .btn {
+//   background-color: green;
+//   border: none;
+//   width: 75px;
+//   border-radius: 5px;
+//   outline: none;
+//   font-size: 14px;
+//   &:hover {
+//     cursor: pointer
+//   }
+//   &:disabled, &:disabled:hover {
+//     background-color: red;
+//     cursor: default;
+//   }
+// }
+
+.success-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .btn-container {
   display: flex;
   flex-direction: row;
+  width: 50%;
+  justify-content: space-around;
 }

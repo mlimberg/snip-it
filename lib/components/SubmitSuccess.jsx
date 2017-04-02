@@ -29,16 +29,16 @@ export default class SubmitSuccess extends Component {
 
   render() {
     return (
-      <div>
+      <div className='success-container'>
         <h1>Success!</h1>
 
         <div className='btn-container'>
-          <FlatButton className='view-btn'
+          <FlatButton className=' btn view-btn'
                       onTouchTap={this.viewImages}
-                      label='View My Photos' />
+                      label='Show In Finder' />
           <FlatButton className='btn take-another-btn'
                       onTouchTap={this.takeAnotherSS}
-                      label='Take Another Screenshot' />
+                      label='New Screenshot' />
           <FlatButton className='btn close-btn'
                       onTouchTap={this.closeWindow}
                       label='Close' />
