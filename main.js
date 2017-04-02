@@ -76,7 +76,6 @@ const openEditWindow = (file, directories) => {
   fs.exists(filePath, (exists) => {
     if(exists) {
       editWindow.show()
-      editWindow.openDevTools();
       editWindow.loadURL('file://' + __dirname + '/public/index.html')
       app.dock.show()
     }

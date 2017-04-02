@@ -1,8 +1,8 @@
-$sick-color: #FFF;
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 body {
-  background-color: $sick-color;
-  font-family: sans-serif;
+  background-color: #FFF;
+  font-family: 'Roboto', sans-serif;
 }
 
 .before-dropdown-message {
@@ -50,6 +50,7 @@ body {
   justify-content: space-around;
   width: 90%;
   margin: auto;
+  align-items: center;
 }
 
 .save-inputs input {
@@ -60,22 +61,6 @@ body {
   font-weight: lighter;
   margin: 5px;
 }
-
-// .btn {
-//   background-color: green;
-//   border: none;
-//   width: 75px;
-//   border-radius: 5px;
-//   outline: none;
-//   font-size: 14px;
-//   &:hover {
-//     cursor: pointer
-//   }
-//   &:disabled, &:disabled:hover {
-//     background-color: red;
-//     cursor: default;
-//   }
-// }
 
 .success-container {
   display: flex;
@@ -88,4 +73,16 @@ body {
   flex-direction: row;
   width: 50%;
   justify-content: space-around;
+}
+
+.error-msg {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 40px;
+}
+
+.error-msg p {
+  color: red;
+  font-size: 13px;
 }
