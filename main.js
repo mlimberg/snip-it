@@ -11,7 +11,7 @@ const mb = Menubar({
   width: -1,
   height: -1,
   icon: './snip-it-logo.png',
-  tooltip: 'click to take a screenshot!'
+  tooltip: 'click to take a screenshot! \nPress spacebar to toggle between selector tool and full window selector'
 });
 const screenshot = require('electron-screenshot-service');
 const shell = require('shelljs');

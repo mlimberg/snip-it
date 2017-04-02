@@ -4,8 +4,6 @@ const electron = window.require('electron');
 const remote = electron.remote;
 const ipc = electron.ipcRenderer;
 const mainProcess = remote.require('./main.js');
-import ImageCard from './ImageCard.jsx';
-import FileSaver from 'FileSaver';
 const injectTapEventPlugin = require('react-tap-event-plugin');
 injectTapEventPlugin();
 import AutoComplete from 'material-ui/AutoComplete';
