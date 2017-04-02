@@ -10,18 +10,18 @@ const dialog = electron.dialog;
 const mb = Menubar({
   width: -1,
   height: -1,
-  icon: './snip-it-logo.png',
+  icon: './snip-it-logo@2x.png',
   tooltip: 'click to take a screenshot! \nPress spacebar to toggle between selector tool and full window selector'
 });
 const screenshot = require('electron-screenshot-service');
 const shell = require('shelljs');
 const sizeOf = require('image-size');
 const electronShell = electron.shell
+app.dock.setIcon('./snip-it-dock-logo.png');
+app.dock.setBadge('Snip-It');
 
 let editWindow = null;
 let currentFolder = '';
-app.dock.setIcon('./snip-it-logo.png');
-app.dock.setBadge('Snip-It');
 // app.getFileIcon('./snip-it-logo.png', (error, image) => {
 //   icon: './snip-it-logo.png'
 //   console.log(error)
@@ -37,15 +37,21 @@ const takeNewSS = () => {
 }
 
 const enableScreenshot = () => {
+  let directories;
   const newImg = Date.now() + '.png'
   shell.mkdir('-p', '~/Desktop/snip-it-images')
   const folder = app.getPath('desktop') + `/snip-it-images`;
-  let directories;
+
   fs.readdir(folder, (err, files) => {
     directories = files.filter(file => fs.statSync(path.join(folder, file)).isDirectory())
   })
-  const sShot = shell.exec(`screencapture -i ~/Desktop/snip-it-images/${newImg}`, () => {
-    openEditWindow(newImg, directories)
+
+  shell.exec(`screencapture -i ~/Desktop/snip-it-images/${newImg}`, () => {
+    fs.exists(`${folder}/${newImg}`, (exists) => {
+      if (exists) {
+        openEditWindow(newImg, directories)
+      }
+    })
   })
 }
 
