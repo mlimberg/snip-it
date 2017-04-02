@@ -10,7 +10,7 @@ const injectTapEventPlugin = require('react-tap-event-plugin');
 injectTapEventPlugin();
 import AutoComplete from 'material-ui/AutoComplete';
 import TextField from 'material-ui/TextField';
-
+import FlatButton from 'material-ui/FlatButton';
 
 export default class SaveScreenshot extends Component {
   constructor(props) {
@@ -26,6 +26,7 @@ export default class SaveScreenshot extends Component {
     this.saveFile = this.saveFile.bind(this);
     this.fileCheck = this.fileCheck.bind(this);
     this.viewPhotos = this.viewPhotos.bind(this);
+    this.tryAgain = this.tryAgain.bind(this);
   }
 
   componentDidMount() {
@@ -72,7 +73,11 @@ export default class SaveScreenshot extends Component {
   viewPhotos() {
       const { filePath } = this.state.imgData;
       mainProcess.viewPhotos(filePath);
-    }
+  }
+
+  tryAgain() {
+    mainProcess.deleteFile(this.state.imgData)
+  }
 
   render() {
     const { imgData, folder, newName, directories, errorMessage, submitted } = this.state
@@ -119,6 +124,10 @@ export default class SaveScreenshot extends Component {
             disabled={errorMessage || !newName && !folder}
             >Save
           </button>
+
+          <FlatButton className='btn try-again-btn'
+                      label='Try Again'
+                      onTouchTap={this.tryAgain}/>
 
         </div>
         {dispErrorMessage()}

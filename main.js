@@ -29,6 +29,11 @@ mb.on('after-show', () => {
   enableScreenshot();
 })
 
+const takeNewSS = () => {
+  editWindow.hide();
+  enableScreenshot();
+}
+
 const enableScreenshot = () => {
   const newImg = Date.now() + '.png'
   shell.mkdir('-p', '~/Desktop/snip-it-images')
@@ -106,7 +111,15 @@ const viewPhotos = (input) => {
   })
 }
 
+const deleteFile = (image) => {
+  shell.rm(image.filePath);
+  editWindow.hide();
+  enableScreenshot();
+}
+
 exports.enableScreenshot = enableScreenshot;
 exports.fileCheck = fileCheck;
 exports.saveFile = saveFile;
 exports.viewPhotos = viewPhotos;
+exports.takeNewSS = takeNewSS;
+exports.deleteFile = deleteFile;
