@@ -69,8 +69,8 @@ const openEditWindow = (file, directories) => {
   editWindow = new BrowserWindow({
     show: false,
     title: 'Edit Screenshot',
-    width: d.width + 50,
-    height: d.height + 150
+    width: 1000,
+    height: d.height + 200
   });
 
   fs.exists(filePath, (exists) => {
