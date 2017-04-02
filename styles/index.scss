@@ -48,3 +48,8 @@ body {
     cursor: default;
   }
 }
+
+.btn-container {
+  display: flex;
+  flex-direction: row;
+}

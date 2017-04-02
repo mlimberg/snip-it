@@ -3,16 +3,22 @@ const electron = window.require('electron');
 const remote = electron.remote;
 const ipc = electron.ipcRenderer;
 const mainProcess = remote.require('./main.js');
+import FlatButton from 'material-ui/FlatButton';
 
 export default class SubmitSuccess extends Component {
   constructor() {
     super();
 
     this.takeAnotherSS = this.takeAnotherSS.bind(this);
+    this.closeWindow = this.closeWindow.bind(this);
   }
 
   takeAnotherSS() {
     mainProcess.takeNewSS()
+  }
+
+  closeWindow() {
+    mainProcess.closeWindow()
   }
 
   render() {
@@ -21,10 +27,15 @@ export default class SubmitSuccess extends Component {
         <h1>Success!</h1>
 
         <div className='btn-container'>
-          <button className='btn view-photos-btn'>View Photos</button>
-          <button className='btn take-another-btn'
-                  onClick={this.takeAnotherSS}>Take Another</button>
-          <button className='btn close-btn'>Close</button>
+          <FlatButton className='btn view-photos-btn'
+                      onTouchTap
+                      label='View Images'/>
+          <FlatButton className='btn take-another-btn'
+                      onTouchTap={this.takeAnotherSS}
+                      label='Take Another Screenshot'/>
+          <FlatButton className='btn close-btn'
+                      onTouchTap={this.closeWindow}
+                      label='Close'/>
         </div>
       </div>
     )

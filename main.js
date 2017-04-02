@@ -117,9 +117,14 @@ const deleteFile = (image) => {
   enableScreenshot();
 }
 
+const closeWindow = () => {
+  editWindow.hide();
+}
+
 exports.enableScreenshot = enableScreenshot;
 exports.fileCheck = fileCheck;
 exports.saveFile = saveFile;
 exports.viewPhotos = viewPhotos;
 exports.takeNewSS = takeNewSS;
 exports.deleteFile = deleteFile;
+exports.closeWindow = closeWindow;

@@ -91,12 +91,11 @@ export default class SaveScreenshot extends Component {
     return (
       <div>
         <div className='save-inputs'>
-          <button
+          <FlatButton
             className='view-btn'
-            onClick={this.viewPhotos}
-            >View My Photos
+            onTouchTap={this.viewPhotos}
+            label='View My Photos' />
 
-          </button>
           <label>
             Desktop/snip-it-images/
 
@@ -118,12 +117,13 @@ export default class SaveScreenshot extends Component {
             onChange={(e) => this.setState({ newName: e.target.value })}
             onKeyUp={this.fileCheck}/>
 
-          <button
+          <FlatButton
             className='btn'
-            onClick={this.saveFile}
+            onTouchTap={this.saveFile}
             disabled={errorMessage || !newName && !folder}
-            >Save
-          </button>
+            label='Save'
+          />
+
 
           <FlatButton className='btn try-again-btn'
                       label='Try Again'
