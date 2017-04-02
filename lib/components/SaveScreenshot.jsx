@@ -76,51 +76,56 @@ export default class SaveScreenshot extends Component {
 
     const dispErrorMessage = () => {
       if (errorMessage) {
-        return <p>This file already exists in this folder.  Please enter a new name</p>
+        return (
+            <p>This file already exists in this folder.  Please enter a new name</p>
+        )
       }
     }
 
     return (
       <div>
         <div className='save-inputs'>
-            <label>
-              <p className='before-dropdown-message'>Desktop/snip-it-images/</p><AutoComplete
-                  className='dropdownmenu-input'
-                  floatingLabelText="Change Screenshot Location"
-                  hintText='Choose Folder'
-                  onNewRequest={(folder) => this.setState({ folder })}
-                  filter={AutoComplete.fuzzyFilter}
-                  dataSource={directories}
-                  onUpdateInput={(e) => this.setState({ folder: e }) }
-                  openOnFocus
-                />
-            </label>
 
-            <TextField
-              className='name-input'
-              id='file-input'
-              floatingLabelText="Change Screenshot Name"
-              hintText={imgData.file}
-              value={newName}
-              onChange={(e) => this.setState({ newName: e.target.value })}
-              onKeyUp={this.fileCheck}/>
-            <div className='save-button-container'>
-              <FlatButton
-                className='btn save-btn'
-                onTouchTap={this.saveFile}
-                disabled={errorMessage || !newName && !folder}
-                label='Save'
+
+          <label>
+            Desktop/snip-it-images/
+
+              <AutoComplete
+                floatingLabelText="Change Screenshot Location"
+                hintText='Choose Folder'
+                onNewRequest={(folder) => this.setState({ folder })}
+                filter={AutoComplete.fuzzyFilter}
+                dataSource={directories}
+                onUpdateInput={(e) => this.setState({ folder: e }) }
+                openOnFocus
               />
+          </label>
+
+          <TextField
+            id='file-input'
+            floatingLabelText="Change Screenshot Name"
+            hintText={imgData.file}
+            value={newName}
+            onChange={(e) => this.setState({ newName: e.target.value })}
+            onKeyUp={this.fileCheck}/>
+
+          <FlatButton
+            className='btn'
+            onTouchTap={this.saveFile}
+            disabled={errorMessage || !newName && !folder}
+            label='Save'
+          />
 
 
-              <FlatButton className='btn try-again-btn'
-                          label='ReTake'
-                          onTouchTap={this.tryAgain}
-                        />
-          </div>
+          <FlatButton className='btn try-again-btn'
+                      label='Try Again'
+                      onTouchTap={this.tryAgain}/>
 
         </div>
-        {dispErrorMessage()}
+
+        <div className='error-msg'>
+          {dispErrorMessage()}
+        </div>
 
         <div className='canvas-container'>
           <img id='screenshot'
