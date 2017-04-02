@@ -5,6 +5,7 @@ const BrowserWindow = electron.BrowserWindow;
 const Menubar = require('menubar');
 const webContents = electron.webContents;
 const ipc = electron.ipcMain;
+const dialog = electron.dialog;
 const mb = Menubar({
   width: -1,
   height: -1,
@@ -34,7 +35,6 @@ const enableScreenshot = () => {
 const openEditWindow = (file) => {
   const filePath = app.getPath('desktop') + `/snip-it-images/${file}`
   const d = sizeOf(filePath)
-
   const imgData = {
     filePath,
     file,
@@ -89,9 +89,10 @@ const fileCheck = (input) => {
 }
 
 const viewPhotos = (input) => {
-  const { filePath } = input;
-  console.log(filePath)
-  shell.openFile(filePath)
+  let files = dialog.showOpenDialog(editWindow, {
+    defaultPath: input,
+    properties: ['openFile']
+  })
 }
 
 exports.enableScreenshot = enableScreenshot;
