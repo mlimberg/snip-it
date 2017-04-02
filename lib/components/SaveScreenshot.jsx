@@ -55,7 +55,6 @@ export default class SaveScreenshot extends Component {
   }
 
   saveFile() {
-    console.log('save')
     const { folder, newName, imgData } = this.state;
     const { file } = imgData;
 
@@ -77,8 +76,6 @@ export default class SaveScreenshot extends Component {
 
   render() {
     const { imgData, folder, newName, directories, errorMessage, submitted } = this.state
-
-    console.log(folder);
 
     const dispErrorMessage = () => {
       if (errorMessage) {
