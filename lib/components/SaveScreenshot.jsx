@@ -25,7 +25,6 @@ export default class SaveScreenshot extends Component {
 
     this.saveFile = this.saveFile.bind(this);
     this.fileCheck = this.fileCheck.bind(this);
-    this.viewPhotos = this.viewPhotos.bind(this);
     this.tryAgain = this.tryAgain.bind(this);
   }
 
@@ -70,11 +69,6 @@ export default class SaveScreenshot extends Component {
     })
   }
 
-  viewPhotos() {
-      const { filePath } = this.state.imgData;
-      mainProcess.viewPhotos(filePath);
-  }
-
   tryAgain() {
     mainProcess.deleteFile(this.state.imgData)
   }
@@ -91,10 +85,7 @@ export default class SaveScreenshot extends Component {
     return (
       <div>
         <div className='save-inputs'>
-          <FlatButton
-            className='view-btn'
-            onTouchTap={this.viewPhotos}
-            label='View My Photos' />
+
 
           <label>
             Desktop/snip-it-images/
@@ -105,6 +96,7 @@ export default class SaveScreenshot extends Component {
                 onNewRequest={(folder) => this.setState({ folder })}
                 filter={AutoComplete.fuzzyFilter}
                 dataSource={directories}
+                onUpdateInput={(e) => this.setState({ folder: e }) }
                 openOnFocus
               />
           </label>

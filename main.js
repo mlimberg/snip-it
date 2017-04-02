@@ -16,8 +16,10 @@ const mb = Menubar({
 const screenshot = require('electron-screenshot-service');
 const shell = require('shelljs');
 const sizeOf = require('image-size');
+const electronShell = electron.shell
 
 let editWindow = null;
+let currentFolder = '';
 app.dock.setIcon('./snip-it-logo.png');
 app.dock.setBadge('Snip-It');
 // app.getFileIcon('./snip-it-logo.png', (error, image) => {
@@ -85,6 +87,7 @@ const openEditWindow = (file, directories) => {
 
 const saveFile = (input) => {
   const { folder, newName, file } = input;
+  currentFolder = folder;
   shell.mkdir('-p', `~/Desktop/snip-it-images/${folder}`)
   shell.cd(`~/Desktop/snip-it-images`)
   shell.mv('-n' ,`${file}`, `${folder}/${newName}.png`)
@@ -104,11 +107,10 @@ const fileCheck = (input) => {
   })
 }
 
-const viewPhotos = (input) => {
-  let files = dialog.showOpenDialog(editWindow, {
-    defaultPath: input,
-    properties: ['openFile']
-  })
+const viewImages = () => {
+  const filePath = app.getPath('desktop') + `/snip-it-images/${currentFolder}/`
+  editWindow.hide()
+  electronShell.openItem(filePath)
 }
 
 const deleteFile = (image) => {
@@ -124,7 +126,7 @@ const closeWindow = () => {
 exports.enableScreenshot = enableScreenshot;
 exports.fileCheck = fileCheck;
 exports.saveFile = saveFile;
-exports.viewPhotos = viewPhotos;
+exports.viewImages = viewImages;
 exports.takeNewSS = takeNewSS;
 exports.deleteFile = deleteFile;
 exports.closeWindow = closeWindow;
