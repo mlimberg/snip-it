@@ -28,7 +28,8 @@ module.exports = {
       },
       { test: /\.css$/, loader: 'style-loader!css-loader' },
       { test: /\.scss/, loader: 'style-loader!css-loader!sass-loader'},
-      { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' }
+      { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' },
+      { test: /\.svg$/, loader: 'babel?presets[]=es2015,presets[]=react!svg-react' }
     ]
   },
 
