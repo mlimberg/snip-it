@@ -8,8 +8,9 @@ import ImageCard from './ImageCard.jsx';
 import FileSaver from 'FileSaver';
 const injectTapEventPlugin = require('react-tap-event-plugin');
 injectTapEventPlugin();
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AutoComplete from 'material-ui/AutoComplete';
+import TextField from 'material-ui/TextField';
+
 
 export default class SaveScreenshot extends Component {
   constructor(props) {
@@ -81,7 +82,6 @@ export default class SaveScreenshot extends Component {
 
     const dispErrorMessage = () => {
       if (errorMessage) {
-        console.log('errorMessage true')
         return <p>This file already exists in this folder.  Please enter a new name</p>
       }
     }
@@ -93,35 +93,38 @@ export default class SaveScreenshot extends Component {
             className='view-btn'
             onClick={this.viewPhotos}
             >View My Photos
+
           </button>
           <label>
             Desktop/snip-it-images/
 
-            <MuiThemeProvider>
               <AutoComplete
-                hintText='Save to Folder'
+                floatingLabelText="Change Screenshot Location"
+                hintText='Choose Folder'
                 onNewRequest={(folder) => this.setState({ folder })}
                 filter={AutoComplete.fuzzyFilter}
                 dataSource={directories}
-                onUpdateInput={(val) => this.setState({ folder: val })}
                 openOnFocus
               />
-            </MuiThemeProvider>
           </label>
-          <input
-            placeholder={imgData.file}
+
+          <TextField
+            id='file-input'
+            floatingLabelText="Change Screenshot Name"
+            hintText={imgData.file}
             value={newName}
             onChange={(e) => this.setState({ newName: e.target.value })}
             onKeyUp={this.fileCheck}/>
+
           <button
             className='btn'
             onClick={this.saveFile}
-            disabled={errorMessage || !newName && !folder}>
-            Save
+            disabled={errorMessage || !newName && !folder}
+            >Save
           </button>
+
         </div>
         {dispErrorMessage()}
-
 
         <div className='canvas-container'>
           <img id='screenshot'
@@ -129,7 +132,6 @@ export default class SaveScreenshot extends Component {
                width={imgData.width}
                height={imgData.height}/>
         </div>
-
       </div>
     )
   }
