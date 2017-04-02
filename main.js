@@ -16,6 +16,12 @@ const shell = require('shelljs');
 const sizeOf = require('image-size');
 
 let editWindow = null;
+app.dock.setIcon('./snip-it-logo.png');
+app.dock.setBadge('Snip-It');
+// app.getFileIcon('./snip-it-logo.png', (error, image) => {
+//   icon: './snip-it-logo.png'
+//   console.log(error)
+// })
 
 mb.on('after-show', () => {
   enableScreenshot();
@@ -55,6 +61,7 @@ const openEditWindow = (file) => {
       editWindow.show()
       editWindow.openDevTools();
       editWindow.loadURL('file://' + __dirname + '/public/index.html')
+      app.dock.show()
     }
   })
 
