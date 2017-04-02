@@ -1,16 +1,8 @@
-$sick-color: peru;
+$sick-color: #FFF;
 
 body {
   background-color: $sick-color;
   font-family: sans-serif;
-}
-
-h1 {
-  color: white;
-}
-
-canvas {
-  background-color: white;
 }
 
 .canvas-container {
@@ -55,4 +47,9 @@ canvas {
     background-color: red;
     cursor: default;
   }
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: row;
 }
