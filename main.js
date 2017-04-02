@@ -6,6 +6,7 @@ const BrowserWindow = electron.BrowserWindow;
 const Menubar = require('menubar');
 const webContents = electron.webContents;
 const ipc = electron.ipcMain;
+const dialog = electron.dialog;
 const mb = Menubar({
   width: -1,
   height: -1,
@@ -46,7 +47,6 @@ const enableScreenshot = () => {
 const openEditWindow = (file, directories) => {
   const filePath = app.getPath('desktop') + `/snip-it-images/${file}`
   const d = sizeOf(filePath)
-
   const imgData = {
     filePath,
     file,
@@ -90,19 +90,26 @@ const saveFile = (input) => {
 
 const fileCheck = (input) => {
   const { folder, newName } = input;
-  const filePath = app.getPath('desktop') + `/snip-it-images/${folder}/${newName}`
-  console.log('filepath:', filePath)
+  const filePath = app.getPath('desktop') + `/snip-it-images/${folder}/${newName}.png`
+
   fs.exists(filePath, (exists) => {
-    console.log('exists', exists)
     if (exists) {
       editWindow.webContents.send('duplicate', true)
     }
     else {
       editWindow.webContents.send('duplicate', false)
-      saveFile(input)
     }
   })
 }
 
+const viewPhotos = (input) => {
+  let files = dialog.showOpenDialog(editWindow, {
+    defaultPath: input,
+    properties: ['openFile']
+  })
+}
+
 exports.enableScreenshot = enableScreenshot;
-exports.fileCheck = fileCheck
+exports.fileCheck = fileCheck;
+exports.saveFile = saveFile;
+exports.viewPhotos = viewPhotos;
