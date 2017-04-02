@@ -27,8 +27,6 @@ app.dock.setBadge('Snip-It');
 
 mb.on('after-show', () => {
   enableScreenshot();
-  // mb.window.loadURL('file://' + __dirname + '/public/index.html');
-  // mb.window.openDevTools();
 })
 
 const enableScreenshot = () => {
@@ -57,7 +55,6 @@ const openEditWindow = (file, directories) => {
 
   editWindow = new BrowserWindow({
     show: false,
-    // backgroundColor: '#000',
     title: 'Edit Screenshot',
     width: d.width + 50,
     height: d.height + 150
