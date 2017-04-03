@@ -86,3 +86,29 @@ body {
   color: red;
   font-size: 13px;
 }
+
+#screenshot {
+  max-width: 90vw;
+  max-height: 90vh;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px;
+}
+
+@media (max-width: 975px) {
+  .save-inputs {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #screenshot {
+    max-width: 80%;
+    border: 1px dashed gray;
+  }
+
+  .save-screen-btns {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    width: 40%;
+    justify-content: space-around;
+  }
+}

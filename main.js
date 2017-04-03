@@ -10,14 +10,14 @@ const dialog = electron.dialog;
 const mb = Menubar({
   width: -1,
   height: -1,
-  icon: './snip-it-logo@2x.png',
+  icon: path.join(__dirname, 'assets/icons/png/16x16.png'),
   tooltip: 'click to take a screenshot! \nPress spacebar to toggle between selector tool and full window selector'
 });
 const screenshot = require('electron-screenshot-service');
 const shell = require('shelljs');
 const sizeOf = require('image-size');
 const electronShell = electron.shell
-app.dock.setIcon('./snip-it-dock-logo.png');
+// app.dock.setIcon('./snip-it-dock-logo.png');
 app.dock.setBadge('Snip-It');
 
 let editWindow = null;
@@ -70,7 +70,8 @@ const openEditWindow = (file, directories) => {
     show: false,
     title: 'Edit Screenshot',
     width: 1000,
-    height: d.height + 200
+    height: d.height + 200,
+    icon: path.join(__dirname, 'assets/icons/png/64x64.png')
   });
 
   fs.exists(filePath, (exists) => {

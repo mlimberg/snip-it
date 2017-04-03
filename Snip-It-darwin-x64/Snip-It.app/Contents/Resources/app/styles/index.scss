@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body {
+  background-color: #FFF;
+  font-family: 'Roboto', sans-serif;
+}
+
+.before-dropdown-message {
+  display: inline;
+  font-size: 15px;
+}
+
+.dropdownmenu-input label , .name-input label {
+  font-size: 13px;
+}
+
+.dropdownmenu-input, .name-input {
+  padding-left: 5px;
+}
+
+.btn {
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px;
+  margin-left: 30px;
+}
+
+
+.save-button-container {
+  margin-top: 29px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 200px;
+}
+
+
+.canvas-container {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.save-inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 90%;
+  margin: auto;
+  align-items: center;
+}
+
+.save-inputs input {
+  outline: none;
+  border: none;
+  height: 25px;
+  font-size: 14px;
+  font-weight: lighter;
+  margin: 5px;
+}
+
+.success-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  justify-content: space-around;
+}
+
+.error-msg {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 40px;
+}
+
+.error-msg p {
+  color: red;
+  font-size: 13px;
+}
