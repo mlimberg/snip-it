@@ -9,6 +9,9 @@
 ### Elijah Williams
 
 ### Bekah Lundy
+* [A first look at Electron](https://medium.com/@rebekahlundy/a-first-look-at-electron-c99d16b46dfb)
+* [The Tale of the Tricky Electron Shell](https://medium.com/@rebekahlundy/the-tale-of-the-tricky-electron-shell-3bd740aa86e7)
+* [Electron? More like Awesome-Sauce](https://medium.com/@rebekahlundy/electron-more-like-awesome-sauce-10583e9be760)
 
 # electron-react-tutorial
 
