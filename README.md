@@ -7,6 +7,9 @@
 * [Why do they call them deadlines anyway?](https://medium.com/@limbergmike/post-mortem-13a92387d0c8)
 
 ### Elijah Williams
+* [Electron Basics and Teaser](https://medium.com/@ejwill04/electron-basics-and-teaser-c19ef26a0c2e)
+* [Electron — Communicating between Main.js and React Components](https://medium.com/@ejwill04/one-of-the-unique-challenges-with-working-with-electron-and-react-was-understanding-how-the-files-8be6f6663a47)
+* [Electron Conclusions and Next Steps](https://medium.com/@ejwill04/electron-conclusions-and-next-steps-ec59fb22b0bc)
 
 ### Bekah Lundy
 * [A first look at Electron](https://medium.com/@rebekahlundy/a-first-look-at-electron-c99d16b46dfb)
