@@ -74,6 +74,8 @@ export default class SaveScreenshot extends Component {
   render() {
     const { imgData, folder, newName, directories, errorMessage, submitted } = this.state
 
+    console.log(imgData);
+
     const dispErrorMessage = () => {
       if (errorMessage) {
         return (
@@ -109,17 +111,18 @@ export default class SaveScreenshot extends Component {
             onChange={(e) => this.setState({ newName: e.target.value })}
             onKeyUp={this.fileCheck}/>
 
-          <FlatButton
-            className='btn'
-            onTouchTap={this.saveFile}
-            disabled={errorMessage || !newName && !folder}
-            label='Save'
-          />
+          <div className='save-screen-btns'>
+            <FlatButton
+              className='btn'
+              onTouchTap={this.saveFile}
+              disabled={errorMessage || !newName && !folder}
+              label='Save' />
 
 
-          <FlatButton className='btn try-again-btn'
-                      label='Try Again'
-                      onTouchTap={this.tryAgain}/>
+            <FlatButton className='btn try-again-btn'
+              label='Try Again'
+              onTouchTap={this.tryAgain} />
+          </div>
 
         </div>
 
@@ -130,8 +133,8 @@ export default class SaveScreenshot extends Component {
         <div className='canvas-container'>
           <img id='screenshot'
                src={imgData.filePath}
-               width={imgData.width}
-               height={imgData.height}/>
+               width={`${imgData.width/2}px`}
+               height={`${imgData.height/2}px`}/>
         </div>
       </div>
     )
