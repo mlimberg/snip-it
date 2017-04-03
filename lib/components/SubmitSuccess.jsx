@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import FlatButton from 'material-ui/FlatButton';
 const electron = window.require('electron');
 const remote = electron.remote;
 const ipc = electron.ipcRenderer;
 const mainProcess = remote.require('./main.js');
-import FlatButton from 'material-ui/FlatButton';
 
 export default class SubmitSuccess extends Component {
   constructor() {
@@ -23,8 +23,7 @@ export default class SubmitSuccess extends Component {
   }
 
   viewImages() {
-      // const { filePath } = this.state.imgData;
-      mainProcess.viewImages();
+    mainProcess.viewImages();
   }
 
   render() {

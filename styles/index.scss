@@ -23,7 +23,6 @@ body {
   margin-left: 30px;
 }
 
-
 .save-button-container {
   margin-top: 29px;
   display: flex;
@@ -31,7 +30,6 @@ body {
   justify-content: space-between;
   width: 200px;
 }
-
 
 .canvas-container {
   padding: 20px;
@@ -88,12 +86,23 @@ body {
 }
 
 #screenshot {
-  max-width: 90vw;
-  max-height: 90vh;
+  max-width: 90vh;
+  // max-height: 90vh;
   box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px;
 }
 
-@media (max-width: 975px) {
+.save-screen-btns {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+  justify-content: space-around;
+}
+
+.input {
+  width: 15%;
+}
+
+@media (max-width: 999px) {
   .save-inputs {
     display: flex;
     flex-direction: column;

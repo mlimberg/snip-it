@@ -17,15 +17,9 @@ const screenshot = require('electron-screenshot-service');
 const shell = require('shelljs');
 const sizeOf = require('image-size');
 const electronShell = electron.shell
-// app.dock.setIcon('./snip-it-dock-logo.png');
-app.dock.setBadge('Snip-It');
 
 let editWindow = null;
 let currentFolder = '';
-// app.getFileIcon('./snip-it-logo.png', (error, image) => {
-//   icon: './snip-it-logo.png'
-//   console.log(error)
-// })
 
 mb.on('after-show', () => {
   enableScreenshot();
@@ -39,8 +33,9 @@ const takeNewSS = () => {
 const enableScreenshot = () => {
   let directories;
   const newImg = Date.now() + '.png'
-  shell.mkdir('-p', '~/Desktop/snip-it-images')
   const folder = app.getPath('desktop') + `/snip-it-images`;
+
+  shell.mkdir('-p', '~/Desktop/snip-it-images')
 
   fs.readdir(folder, (err, files) => {
     directories = files.filter(file => fs.statSync(path.join(folder, file)).isDirectory())

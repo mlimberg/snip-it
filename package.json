@@ -3,6 +3,11 @@
   "productName": "Snip-It",
   "version": "0.1.0",
   "main": "main.js",
+  "scripts": {
+    "start": "./node_modules/electron-prebuilt/dist/Electron.app/Contents/MacOS/Electron .",
+    "watch": "./node_modules/.bin/webpack-dev-server",
+    "electron-rebuild": "./node_modules/.bin/electron-rebuild"
+  },
   "devDependencies": {
     "babel-core": "^6.7.2",
     "babel-loader": "^6.2.4",
@@ -12,8 +17,6 @@
     "electron-packager": "^5.2.1",
     "electron-rebuild": "^1.1.3",
     "file-loader": "^0.10.1",
-    "less": "^2.6.1",
-    "less-loader": "^2.2.2",
     "node-libs-browser": "^1.0.0",
     "node-sass": "^4.5.1",
     "react-svg-loader": "^1.1.1",
@@ -26,11 +29,6 @@
     "url-loader": "^0.5.8",
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.14.1"
-  },
-  "scripts": {
-    "start": "./node_modules/electron-prebuilt/dist/Electron.app/Contents/MacOS/Electron .",
-    "watch": "./node_modules/.bin/webpack-dev-server",
-    "electron-rebuild": "./node_modules/.bin/electron-rebuild"
   },
   "dependencies": {
     "electron-canvas-to-buffer": "^2.0.0",
