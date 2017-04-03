@@ -5,10 +5,10 @@ const remote = electron.remote;
 const ipc = electron.ipcRenderer;
 const mainProcess = remote.require('./main.js');
 const injectTapEventPlugin = require('react-tap-event-plugin');
-injectTapEventPlugin();
 import AutoComplete from 'material-ui/AutoComplete';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
+injectTapEventPlugin();
 
 export default class SaveScreenshot extends Component {
   constructor(props) {
@@ -56,11 +56,8 @@ export default class SaveScreenshot extends Component {
     const { folder, newName, imgData } = this.state;
     const { file } = imgData;
 
-    const fileToSave = {
-      folder,
-      newName,
-      file
-    }
+    const fileToSave = { folder, newName, file }
+
     mainProcess.saveFile(fileToSave);
     this.setState({ folder: '', newName: '', imgData: '' }, () => {
       this.props.toggleView()
@@ -74,8 +71,6 @@ export default class SaveScreenshot extends Component {
   render() {
     const { imgData, folder, newName, directories, errorMessage, submitted } = this.state
 
-    console.log(imgData);
-
     const dispErrorMessage = () => {
       if (errorMessage) {
         return (
@@ -88,40 +83,36 @@ export default class SaveScreenshot extends Component {
       <div>
         <div className='save-inputs'>
 
-
           <label>
             Desktop/snip-it-images/
 
-              <AutoComplete
-                floatingLabelText="Change Screenshot Location"
-                hintText='Choose Folder'
-                onNewRequest={(folder) => this.setState({ folder })}
-                filter={AutoComplete.fuzzyFilter}
-                dataSource={directories}
-                onUpdateInput={(e) => this.setState({ folder: e }) }
-                openOnFocus
-              />
+            <AutoComplete floatingLabelText="Change Screenshot Location"
+                          className='input'
+                          hintText='Choose Folder'
+                          onNewRequest={(folder) => this.setState({ folder })}
+                          filter={AutoComplete.fuzzyFilter}
+                          dataSource={directories}
+                          onUpdateInput={(e) => this.setState({ folder: e }) }
+                          openOnFocus />
           </label>
 
-          <TextField
-            id='file-input'
-            floatingLabelText="Change Screenshot Name"
-            hintText={imgData.file}
-            value={newName}
-            onChange={(e) => this.setState({ newName: e.target.value })}
-            onKeyUp={this.fileCheck}/>
+          <TextField id='file-input'
+                     className='input'
+                     floatingLabelText="Change Screenshot Name"
+                     hintText={imgData.file}
+                     value={newName}
+                     onChange={(e) => this.setState({ newName: e.target.value })}
+                     onKeyUp={this.fileCheck} />
 
           <div className='save-screen-btns'>
-            <FlatButton
-              className='btn'
-              onTouchTap={this.saveFile}
-              disabled={errorMessage || !newName && !folder}
-              label='Save' />
-
+            <FlatButton className='btn'
+                        onTouchTap={this.saveFile}
+                        disabled={errorMessage || !newName && !folder}
+                        label='Save' />
 
             <FlatButton className='btn try-again-btn'
-              label='Try Again'
-              onTouchTap={this.tryAgain} />
+                        label='Try Again'
+                        onTouchTap={this.tryAgain} />
           </div>
 
         </div>
