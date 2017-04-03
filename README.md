@@ -4,7 +4,7 @@
 ### Mike Limberg
 * [Electon: First Impressions](https://medium.com/@limbergmike/electron-first-impressions-43ce4942df17)
 * [Pivot!](https://medium.com/@limbergmike/pivot-46035d62e7ec)
-* [Why do they call them deadlines anyway? (WIP)](https://medium.com/p/13a92387d0c8/edit)
+* [Why do they call them deadlines anyway?](https://medium.com/@limbergmike/post-mortem-13a92387d0c8)
 
 ### Elijah Williams
 
