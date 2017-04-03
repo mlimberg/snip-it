@@ -86,3 +86,14 @@ body {
   color: red;
   font-size: 13px;
 }
+
+@media (max-width: 800px) {
+  .save-inputs {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #screenshot {
+    max-width: 80%;
+  }
+}
